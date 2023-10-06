@@ -7,6 +7,7 @@ import com.investing.market.data.obj.Coins
 import com.investing.market.data.Resource
 import com.investing.market.data.repository.PriceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +25,7 @@ class StockViewmodel @Inject constructor(private val priceRepository: PriceRepos
 
     fun fetchAllData() {
         stockList.postValue(Resource.Loading())
+
         CoroutineScope(Dispatchers.Main + handlerException).launch() {
 
             val list = priceRepository.fetchStockList().data!!
