@@ -88,7 +88,7 @@ dependencies {
     // google play service
     implementation 'com.google.android.gms:play-services-ads:22.1.0'
 
-    def appCenterSdkVersion = '4.4.5'
+    def appCenterSdkVersion = '5.0.0'
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
