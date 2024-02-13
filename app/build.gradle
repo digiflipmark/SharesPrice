@@ -26,7 +26,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("D:/Project/SharesPrice/jks/key.jks")
+            storeFile file("C:\\Users\\Linux\\key Store\\key.jks")
             storePassword ("mehuld1995@")
             keyAlias ("mehuld1995@")
             keyPassword ("mehuld1995@")
