@@ -7,14 +7,8 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        release {
-            storeFile file("D:/Project/SharesPrice/key.jks")
-            storePassword System.getenv("mehuld1995@")
-            keyAlias System.getenv("mehuld1995@")
-            keyPassword System.getenv("mehuld1995@")
-        }
-    }
+
+
     namespace 'com.investing.market'
     compileSdk 33
 
@@ -26,16 +20,27 @@ android {
         versionName "1.1"
         multiDexEnabled=true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         /*setProperty("archivesBaseName", "SharesPrice" + "-v" + versionCode + "(" + versionName + ")")*/
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('D:\\Project\\SharesPrice\\key.jks')
+            storePassword 'mehuld1995@'
+            keyAlias 'mehuld1995@'
+            keyPassword 'mehuld1995@'
+        }
+    }
 
 
     buildTypes {
         release {
             minifyEnabled true
-            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
