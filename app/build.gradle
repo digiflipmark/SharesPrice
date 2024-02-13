@@ -8,15 +8,6 @@ plugins {
 
 android {
 
-
-    signingConfigs {
-        debug {
-            storeFile file('C:\\Users\\Linux\\key Store\\key.jks')
-            storePassword 'mehuld1995@'
-            keyAlias 'mehuld1995@'
-            keyPassword 'mehuld1995@'
-        }
-    }
     namespace 'com.investing.market'
     compileSdk 33
 
@@ -34,15 +25,26 @@ android {
     }
 
 
+    signingConfigs {
+        debug {
+            storeFile file("C:/Users/Linux/keystore/android.jks")
+            storePassword 'mehuld1995@'
+            keyAlias 'mehuld1995@'
+            keyPassword 'mehuld1995@'
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            minifyEnabled false
+
             signingConfig signingConfigs.debug
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+
         }
     }
     compileOptions {
