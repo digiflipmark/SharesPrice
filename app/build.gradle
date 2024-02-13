@@ -26,10 +26,10 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("D://Project//SharesPrice//key.jks")
-            storePassword System.getenv("mehuld1995@")
-            keyAlias System.getenv("mehuld1995@")
-            keyPassword System.getenv("mehuld1995@")
+            storeFile file("D:/Project/SharesPrice/jks/key.jks")
+            storePassword ("mehuld1995@")
+            keyAlias ("mehuld1995@")
+            keyPassword ("mehuld1995@")
         }
     }
 
