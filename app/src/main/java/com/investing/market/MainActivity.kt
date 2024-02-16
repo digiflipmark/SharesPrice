@@ -2,6 +2,8 @@ package com.investing.market
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.core.util.rangeTo
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -23,16 +25,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_start)
-        AppCenter.start(
-            application,
-            "3c56e796-0c0b-4405-8626-d60c412e0ed7",
-            Analytics::class.java,
-            Crashes::class.java
-        )
+
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-//change
+
         setSupportActionBar(binding.toolbar)
 
 
@@ -42,8 +40,11 @@ class MainActivity : AppCompatActivity() {
                     binding.toolbar.isVisible = false
 
                 }
+
                 else -> binding.toolbar.isVisible = true
             }
         }
+
     }
+
 }
