@@ -1,8 +1,10 @@
 package com.investing.market
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.util.rangeTo
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityStartBinding
     lateinit var navController: NavController
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_start)
@@ -32,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         setSupportActionBar(binding.toolbar)
-
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
@@ -45,6 +47,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
     }
+
 
 }

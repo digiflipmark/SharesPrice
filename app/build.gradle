@@ -21,8 +21,6 @@ android {
         versionName "1.1"
         multiDexEnabled=true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-
         /*setProperty("archivesBaseName", "SharesPrice" + "-v" + versionCode + "(" + versionName + ")")*/
     }
 
