@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500289446327",
+    "project_id": "shareprice-d49b2",
+    "storage_bucket": "shareprice-d49b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500289446327:android:17fd209599b40ca36a4832",
+        "android_client_info": {
+          "package_name": "com.investing.market"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTf7uTO6sXZ5gaaQPY7krzgxXaeN3XB8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

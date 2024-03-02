@@ -1,22 +1,18 @@
 package com.investing.market
 
+
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.annotation.RequiresApi
-import androidx.core.util.rangeTo
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import com.investing.market.databinding.ActivityStartBinding
-import com.microsoft.appcenter.AppCenter
-import com.microsoft.appcenter.analytics.Analytics
-import com.microsoft.appcenter.crashes.Crashes
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.internal.Contexts
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -28,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_start)
-
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -47,8 +42,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
     }
-
-
 }

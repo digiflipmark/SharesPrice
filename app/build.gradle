@@ -4,6 +4,8 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 
@@ -11,21 +13,21 @@ plugins {
 android {
 
     namespace 'com.investing.market'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.investing.market"
         minSdk 21
-        targetSdk 33
-        versionCode 2
-        versionName "1.1"
+        targetSdk 34
+        versionCode 3
+        versionName "1.2"
         multiDexEnabled=true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         /*setProperty("archivesBaseName", "SharesPrice" + "-v" + versionCode + "(" + versionName + ")")*/
     }
 
 
-    signingConfigs {
+    /*signingConfigs {
 
         def keystoreProperties = new Properties()
         def keystorePropertiesFile = rootProject.file('key.properties')
@@ -39,14 +41,14 @@ android {
             storeFile file(keystoreProperties['storeFile'])
             storePassword keystoreProperties['storePassword']
         }
-    }
+    }*/
 
 
 
     buildTypes {
         release {
             minifyEnabled true
-            signingConfig signingConfigs.release
+            /*signingConfig signingConfigs.release*/
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         
@@ -113,10 +115,15 @@ dependencies {
     implementation "io.coil-kt:coil:2.1.0"
 
     // google play service
-    implementation 'com.google.android.gms:play-services-ads:22.1.0'
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
 
     def appCenterSdkVersion = '5.0.0'
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+
+    implementation platform('com.google.firebase:firebase-bom:32.7.3')
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
+
 
 }

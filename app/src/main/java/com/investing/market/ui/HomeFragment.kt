@@ -1,10 +1,12 @@
 package com.investing.market.ui
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -13,6 +15,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.investing.market.R
 import com.investing.market.data.Resource
@@ -32,15 +36,15 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentDashboardBinding
     private val stockViewmodel: StockViewmodel by viewModels()
     lateinit var stockAdapter: StockAdapter
+    private lateinit var adView: AdView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        stockViewmodel.fetchAllData()
 
-        MobileAds.initialize(requireContext()) {}
+
     }
 
     override fun onCreateView(
@@ -53,6 +57,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        stockViewmodel.fetchAllData()
+        adView = AdView(requireActivity())
+        binding.adViewContainer.addView(adView)
+        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        adView.setAdSize(adSize)
+
+        // Create an ad request.
+        val adRequest = AdRequest.Builder().build()
+
+        // Start loading the ad in the background.
+        adView.loadAd(adRequest)
 
         binding.rvStock.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -68,13 +84,16 @@ class HomeFragment : Fragment() {
                     Toast.makeText(requireActivity(), "${it.message}", Toast.LENGTH_SHORT)
                         .show()
                 }
+
                 is Resource.Loading -> {
                     binding.tvEmpty.isVisible = false
                     binding.progressCircular.isVisible = true
                 }
+
                 is Resource.NetworkError -> {
 
                 }
+
                 is Resource.Success -> {
                     binding.progressCircular.isVisible = false
                     if (it.data!!.isNotEmpty()) {
@@ -91,11 +110,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // Create an ad request.
-        val adRequest = AdRequest.Builder().build()
-
-        // Start loading the ad in the background.
-        binding.adView.loadAd(adRequest)
     }
 
     companion object {
@@ -110,8 +124,40 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding.adView.destroy()
+        adView.destroy()
         super.onDestroy()
     }
+
+    public override fun onPause() {
+        adView.pause()
+        super.onPause()
+    }
+
+    /** Called when returning to the activity. */
+    public override fun onResume() {
+        super.onResume()
+        adView.resume()
+    }
+
+    private val adSize: AdSize
+        get() {
+
+            val display = requireActivity().windowManager.defaultDisplay
+            val outMetrics = DisplayMetrics()
+            display.getMetrics(outMetrics)
+
+            val density = outMetrics.density
+
+            var adWidthPixels = binding.adViewContainer.width.toFloat()
+            if (adWidthPixels == 0f) {
+                adWidthPixels = outMetrics.widthPixels.toFloat()
+            }
+
+            val adWidth = (adWidthPixels / density).toInt()
+            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
+                requireActivity(),
+                adWidth
+            )
+        }
 
 }

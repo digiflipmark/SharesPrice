@@ -1,5 +1,6 @@
 package com.investing.market.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -30,22 +31,78 @@ class SplashFragment : Fragment() {
     lateinit var binding: FragmentSplashBinding
     private val handler = Handler(Looper.getMainLooper())
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.e("SplashFragment", "onAttach: " )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e("SplashFragment", "onCreate: " )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        Log.e("SplashFragment", "onCreateView: " )
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.e("SplashFragment", "onViewCreated: " )
         handler.postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
         }, 2000)
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        Log.e("SplashFragment", "onStart: " )
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        Log.e("SplashFragment", "onViewStateRestored: " )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("SplashFragment", "onResume: " )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("SplashFragment", "onPause: " )
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.e("SplashFragment", "onStart: " )
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("SplashFragment", "onStop: " )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.e("SplashFragment", "onDestroyView: " )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("SplashFragment", "onDestroy: " )
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.e("SplashFragment", "onDetach: " )
     }
 
 

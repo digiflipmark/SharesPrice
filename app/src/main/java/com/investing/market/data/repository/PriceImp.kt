@@ -21,7 +21,7 @@ class PriceImp(private val sharesApi: SharesApi) : PriceRepository {
                 val response = sharesApi.priceAll()
                 if (response.isSuccessful && response.body() != null) {
                     val coin = response.body()!!.map { it.toCoins() }
-                    delay(5000)
+                    delay(3000)
                     Resource.Success(coin)
                 } else {
                     Resource.Error(response.errorBody().toString())
